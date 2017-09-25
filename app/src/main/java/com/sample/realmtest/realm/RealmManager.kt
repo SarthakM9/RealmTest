@@ -46,6 +46,7 @@ object RealmManager {
         if (list.size > 0) {
             val realm = Realm.getDefaultInstance()
             realm.executeTransaction { list.deleteFromRealm(list.size - 1) }
+            realm.close()
         }
     }
 }
