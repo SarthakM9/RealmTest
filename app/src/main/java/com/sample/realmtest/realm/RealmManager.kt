@@ -7,6 +7,7 @@ import com.ityx.messenger.android.repository.entitites.TextMessage
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmList
+import io.realm.RealmResults
 import java.util.*
 
 object RealmManager {
@@ -29,7 +30,7 @@ object RealmManager {
             newContact.conversation?.textMessages = RealmList<TextMessage>()
             realm.executeTransaction { contact = it.copyToRealm(newContact) }
         }
-        return contact
+        return contact!!
     }
 
     fun addRandomMessage(contact: Contact) {
@@ -39,5 +40,12 @@ object RealmManager {
         message.message = "message: ${Calendar.getInstance().timeInMillis}"
         realm.executeTransaction { contact.conversation?.textMessages?.add(message) }
         realm.close()
+    }
+
+    fun deleteLastMessage(list: RealmResults<TextMessage>) {
+        if (list.size > 0) {
+            val realm = Realm.getDefaultInstance()
+            realm.executeTransaction { list.deleteFromRealm(list.size - 1) }
+        }
     }
 }

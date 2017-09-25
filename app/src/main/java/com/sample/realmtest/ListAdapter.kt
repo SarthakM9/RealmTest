@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ityx.messenger.android.repository.entitites.TextMessage
-import io.realm.RealmList
 import kotlinx.android.synthetic.main.list_row.view.*
 
 class ListAdapter(
-        val list: RealmList<TextMessage>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+        val list: List<TextMessage>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -25,7 +24,7 @@ class ListAdapter(
     override fun onBindViewHolder(holder: ListAdapter.ViewHolder?, position: Int) {
         if (holder == null)
             return
-        holder.message.text = "<${position + 1}> " + list[position].message
+        holder.message.text = list[position].message
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

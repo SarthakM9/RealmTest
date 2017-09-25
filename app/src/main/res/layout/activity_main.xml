@@ -11,11 +11,25 @@
         android:layout_height="match_parent"
         />
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:text="add msg to db"/>
+        android:orientation="vertical"
+        android:padding="5dp"
+        >
 
+        <Button
+            android:id="@+id/addMsgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Message"/>
+
+        <Button
+            android:id="@+id/delMsgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Remove Message"/>
+    </LinearLayout>
 </FrameLayout>
